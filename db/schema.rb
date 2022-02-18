@@ -40,6 +40,16 @@ ActiveRecord::Schema.define(version: 2022_02_17_104649) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.bigint "list_id", null: false
+    t.text "comment"
+    t.integer "rating"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["list_id"], name: "index_reviews_on_list_id"
+  end
+
   add_foreign_key "bookmarks", "lists"
   add_foreign_key "bookmarks", "movies"
+  add_foreign_key "reviews", "lists"
 end
